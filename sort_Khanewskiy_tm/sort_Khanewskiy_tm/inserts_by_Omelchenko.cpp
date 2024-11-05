@@ -1,8 +1,19 @@
-﻿#include <iostream>
+﻿#include "inserts_by_Omelchenko.h"
+
+#ifndef STRING_H
+#define STRING_H
 #include <string>
+#endif
+
+#ifndef SSTREAM_H
+#define SSTREAM_H
 #include <sstream>
-#include <algorithm>
+#endif
+
+#ifndef VECTOR_H
+#define VECTOR_H
 #include <vector>
+#endif
 
 using namespace std;
 
@@ -38,5 +49,3 @@ string inserts_by_Omelchenko(string str) {
     }
     return result.str();
 }
-
-

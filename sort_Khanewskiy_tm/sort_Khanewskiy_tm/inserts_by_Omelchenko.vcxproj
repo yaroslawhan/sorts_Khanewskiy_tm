@@ -128,15 +128,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="inserts_by_Omelchenko.cpp" />
-    <ClCompile Include="sort_Khanewskiy_tm\sort_Khanewskiy_tm\inserts_by_Omelchenko.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="sort_Khanewskiy_tm\sort_Khanewskiy_tm\inserts_by_Omelchenko.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="sort_Khanewskiy_tm\sort_Khanewskiy_tm\inserts_by_Omelchenko.vcxproj" />
-    <None Include="sort_Khanewskiy_tm\sort_Khanewskiy_tm\inserts_by_Omelchenko.vcxproj.filters" />
-    <None Include="sort_Khanewskiy_tm\sort_Khanewskiy_tm\inserts_by_Omelchenko.vcxproj.user" />
+    <ClInclude Include="inserts_by_Omelchenko.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
