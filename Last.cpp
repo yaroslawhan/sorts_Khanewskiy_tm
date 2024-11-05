@@ -6,8 +6,8 @@
 using namespace std;
 
 int main() {
-    vector<string> words = { "apple", "banana", "grape", "pear", "orange", "kiwi", "apricot" };
-    vector<string> sortedWords = ABCSort(words, 0);
+    string input = "apple banana grape pear orange kiwi apricot";
+    vector<string> sortedWords = ABCSort(input);
 
     cout << "Отсортированные слова:" << endl;
     for (const auto& word : sortedWords) {

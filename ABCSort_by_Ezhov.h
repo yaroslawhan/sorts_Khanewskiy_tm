@@ -4,6 +4,9 @@
 #include <string>
 #include <vector>
 
-std::vector<std::string> ABCSort(const std::vector<std::string>& collection, int rank);
+using namespace std;
 
+vector<string> ABCSort(const vector<string>& collection, int rank);
+
+vector<string> ABCSort(const string& input);
 #endif // ABCSORT_H
