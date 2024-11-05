@@ -129,6 +129,9 @@
   <ItemGroup>
     <ClCompile Include="insert_by_Legkova.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="insert_by_Legkova.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
