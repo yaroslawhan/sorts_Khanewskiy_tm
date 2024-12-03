@@ -3,7 +3,7 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
-#include <sort_algoritms.h>
+#include <sort_algorithms.h>
 
 using namespace std;
 
