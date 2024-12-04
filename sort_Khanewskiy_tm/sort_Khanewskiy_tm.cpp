@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include "sort_algorithms.h"
+#include "dataGenerator.h"
 
 #define RUN(x, show_sort) {                \
     Run(#x, x, data, show_sort);           \
@@ -13,18 +14,16 @@
 std::string dataset;
 
 template<typename SortingMethod>
-void Run(const std::string& method_name, SortingMethod sortingMethod, const std::string& inputData, bool showResult = false) {
+void Run(const std::string& method_name, SortingMethod sortingMethod, std::string& inputData, bool showResult = false) {
     std::cout << "Now " << method_name << " is running...\n";
 
     const auto start = std::chrono::high_resolution_clock::now();
-    std::string outputData = "test1 trst2 test 3 1 gg aa b ccc";
+    std::string outputData = sortingMethod(inputData);
     const auto stop = std::chrono::high_resolution_clock::now();
-    const auto int_ms = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
-
-    //bool is_sorted = std::is_sorted(data.begin(), data.end());
+    const auto time = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count();
 
     std::cout << "Algorithm " << "completed successfully.\n";
-    std::cout << "Required time: " << time << " mcs.\n\n";
+    std::cout << "Required time: " << time << " ms.\n\n";
 
     if (showResult) std::cout << "Resulted string after sorting: " << outputData << '\n';
 }
@@ -32,17 +31,28 @@ void Run(const std::string& method_name, SortingMethod sortingMethod, const std:
 int main() {
     std::string data;
 
-    std::ifstream inputFile("test_data.txt");
-    if (inputFile) {
-        std::getline(inputFile, data);
-        inputFile.close();
-    } else std::cout << "Error while reading the file! Try again";
-
-    std::cout << "-------- Comparison of algorithms for sorting string --------\n";
+    std::cout << "-------- Comparison of algorithms for sorting string --------\n\n\n";
     
-    std::cout << "Input string: " << data << "\n\n";
+    std::cout << "10.000 words\n\n";
+    data = generateString(10000);
+    RUN(quickSort_by_Usynin, false);
+    RUN(ABCsort_by_Ezhov, false);
+    RUN(heap_by_Legkova, false);
+    RUN(inserts_by_Omelchenko, false);
 
-    RUN(quickSort_by_Usynin, true);
+    std::cout << "\n\n100.000 words\n\n";
+    data = generateString(100000);
+    RUN(quickSort_by_Usynin, false);
+    RUN(ABCsort_by_Ezhov, false);
+    RUN(heap_by_Legkova, false);
+    RUN(inserts_by_Omelchenko, false);
+
+    std::cout << "\n\n1.000.000 words\n\n";
+    data = generateString(1000000);
+    RUN(quickSort_by_Usynin, false);
+    RUN(ABCsort_by_Ezhov, false);
+    RUN(heap_by_Legkova, false);
+    RUN(inserts_by_Omelchenko, false);
 
     std::cout << "Press Enter to exit...";
     return 0;

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-vector<string> ABCSort(const vector<string>& collection, int rank) {
+vector<string> ABCsort_by_Ezhov(const vector<string>& collection, int rank) {
     if (collection.size() < 2) return collection;
 
     unordered_map<char, vector<string>> table;
@@ -25,7 +25,7 @@ vector<string> ABCSort(const vector<string>& collection, int rank) {
 
     for (char i = 'A'; i <= 'z'; i++) {
         if (table.count(i)) {
-            auto sortedWords = ABCSort(table[i], rank + 1);
+            auto sortedWords = ABCsort_by_Ezhov(table[i], rank + 1);
             listResult.insert(listResult.end(), sortedWords.begin(), sortedWords.end());
         }
     }
@@ -34,7 +34,7 @@ vector<string> ABCSort(const vector<string>& collection, int rank) {
 }
 
 
-string ABCSort(const string& input) {
+string ABCsort_by_Ezhov(const string& input) {
     vector<string> words, res;
     stringstream ss(input);
     string word, resstr;
@@ -43,7 +43,7 @@ string ABCSort(const string& input) {
         words.push_back(word);
     }
 
-    res = ABCSort(words, 0);
+    res = ABCsort_by_Ezhov(words, 0);
 
     for (size_t i = 0; i < res.size(); ++i) {
         resstr += res[i];
