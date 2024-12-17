@@ -1,7 +1,7 @@
-#include <iostream>
 #include <cstdlib>
-#include <ctime>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 // Генератор случайных слов
 std::string generateRandomWord() {
@@ -24,12 +24,40 @@ std::string generateRandomWord() {
     return word;
 }
 
-// Функция для генерации строки с заданным количеством слов
+// Функция для генерации случайной строки с заданным количеством слов
 std::string generateString(int wordCount) {
     std::string result;
     for (int i = 0; i < wordCount; ++i) {
         result += generateRandomWord();
         if (i != wordCount - 1) result += " ";
     }
+    return result;
+}
+
+// Функция для генерации строки с указанным количеством слов и числом отсортированных слов
+std::string generatePartiallySortedString(size_t totalWords, size_t sortedWords) {
+    // Проверка на корректность аргументов
+    if (sortedWords > totalWords) {
+        return "";
+    }
+
+    // Создаем массив слов
+    std::vector<std::string> words;
+    for (size_t i = 0; i < totalWords; ++i) {
+        words.push_back(generateRandomWord());
+    }
+
+    // Сортируем указанное количество слов
+    if (sortedWords > 0) {
+        std::sort(words.begin(), words.begin() + sortedWords);
+    }
+
+    // Собираем строку из массива слов
+    std::string result;
+    for (size_t i = 0; i < totalWords; ++i) {
+        result += words[i];
+        if (i != totalWords - 1) result += " ";
+    }
+
     return result;
 }

@@ -53,7 +53,8 @@ void process(std::vector<long>& RT, std::vector<std::vector<long>>& LT, std::vec
     }
 }
 
-std::string ABCsort_by_Ezhov(const std::string& input, int keys = 10) {
+std::string ABCsort_by_Ezhov(const std::string& input) {
+    int keys = 10;
     std::vector<std::string> data;
     std::vector<long> sorted_records;
     std::vector<long> RT;
