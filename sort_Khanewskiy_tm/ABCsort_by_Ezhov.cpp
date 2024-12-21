@@ -2,11 +2,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstring>
 #include <sstream>
+#include <clocale>
 
-constexpr char alphamin = 'a';
-constexpr char alphamax = 'z';
+constexpr int alphamin = 0; 
+constexpr int alphamax = 255;
 
 char GetNextField(const std::vector<std::string>& data, long record_no, int level) {
     if (level - 1 < data[record_no].size())
@@ -20,7 +20,7 @@ void PutCurrRecord(std::vector<long>& sorted_records, long record_no, int& index
 
 void process(std::vector<long>& RT, std::vector<std::vector<long>>& LT, std::vector<long>& sorted_records,
     const std::vector<std::string>& data, int level, int keys, int& index) {
-    for (char i = alphamin; i <= alphamax; ++i) {
+    for (int i = alphamin; i <= alphamax; ++i) {
         long recno = LT[level][i];
         LT[level][i] = 0;
 
@@ -42,8 +42,8 @@ void process(std::vector<long>& RT, std::vector<std::vector<long>>& LT, std::vec
                     while (recno != 0) {
                         long nextrec = RT[recno];
                         char c = GetNextField(data, recno, newlevel);
-                        RT[recno] = LT[newlevel][c];
-                        LT[newlevel][c] = recno;
+                        RT[recno] = LT[newlevel][static_cast<unsigned char>(c)];
+                        LT[newlevel][static_cast<unsigned char>(c)] = recno;
                         recno = nextrec;
                     }
                     process(RT, LT, sorted_records, data, newlevel, keys, index);
@@ -53,8 +53,7 @@ void process(std::vector<long>& RT, std::vector<std::vector<long>>& LT, std::vec
     }
 }
 
-std::string ABCsort_by_Ezhov(const std::string& input) {
-    int keys = 10;
+std::string ABCsort(const std::string& input, int keys = 10) {
     std::vector<std::string> data;
     std::vector<long> sorted_records;
     std::vector<long> RT;
@@ -69,12 +68,13 @@ std::string ABCsort_by_Ezhov(const std::string& input) {
 
     int N = data.size();
     sorted_records.resize(N, 0);
+
     RT.resize(N, 0);
 
     for (int recno = 0; recno < N; ++recno) {
         char c = GetNextField(data, recno, 1);
-        RT[recno] = LT[1][c];
-        LT[1][c] = recno;
+        RT[recno] = LT[1][static_cast<unsigned char>(c)];
+        LT[1][static_cast<unsigned char>(c)] = recno;
     }
 
     int index = 0;
